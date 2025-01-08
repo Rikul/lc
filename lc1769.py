@@ -1,3 +1,5 @@
+
+
 class Solution:
     def minOperations(self, boxes: str) -> list[int]:
         idx = {i for i in range(len(boxes)) if boxes[i] == '1'}
@@ -36,4 +38,7 @@ class Solution:
             operations += count
         
         return result
+
+sol = Solution()
+print(sol.minOperations("001011")) 
 """
