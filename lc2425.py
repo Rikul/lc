@@ -1,5 +1,5 @@
 class Solution:
-    def xorAllNums(self, nums1: List[int], nums2: List[int]) -> int:
+    def xorAllNums(self, nums1: list[int], nums2: list[int]) -> int:
       
         result = nums1[0]
         for i in range(1,len(nums1)):
