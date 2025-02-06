@@ -42,12 +42,14 @@ public:
         std::set<int> safeNodes;
 
         for(int i = 0; i < graph.size(); i++) {
-            std::set<int> visited;
-
             if (graph[i].size() == 0 || (graph[i].size() == 1 && graph[i][0] == i)) { 
-                safeNodes.insert(i);
-                continue;
+                    safeNodes.insert(i);
+                    continue;
             }
+        }
+
+        for(int i = 0; i < graph.size(); i++) {
+            std::set<int> visited;
 
             vector<int> q = graph[i];
             bool isSafe = true;
