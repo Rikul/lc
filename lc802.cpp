@@ -42,15 +42,12 @@ public:
         std::set<int> safeNodes;
 
         for(int i = 0; i < graph.size(); i++) {
-            if (graph[i].size() == 0 || (graph[i].size() == 1 && graph[i][0] == i)) { 
+            std::set<int> visited;
+            if (graph[i].size() == 0) {  
                     safeNodes.insert(i);
                     continue;
             }
-        }
-
-        for(int i = 0; i < graph.size(); i++) {
-            std::set<int> visited;
-
+        
             vector<int> q = graph[i];
             bool isSafe = true;
             while (q.size() > 0) {
@@ -68,7 +65,7 @@ public:
                 }
             
                 if (visited.find(node) != visited.end()) {
-                    cout << "Cycle detected at " << node << endl;
+                    cout << "Cycle detected at " << node << " : " << i << endl;
                     isSafe = false;
                     break;
                 }
@@ -82,7 +79,17 @@ public:
             }
         }
 
-
         return vector<int>(safeNodes.begin(), safeNodes.end());
     }
 };
+
+int main() {
+    Solution sol;
+    vector<vector<int>> graph = {{},{0,2,3},{3},{4},{6,7,8},{7},{8},{}};
+    vector<int> safeNodes = sol.eventualSafeNodes(graph);
+    for(auto node : safeNodes) {
+        cout << node << " ";
+    }
+    cout << endl;
+    return 0;
+}   
