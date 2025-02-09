@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <set>
+#include <stack>
 
 using namespace std;
 
@@ -23,39 +24,34 @@ public:
             
             // check each connected node
             vector<int> nodes = graph[i];
-            std::set<int> visited;
+            //std::set<int> visited;
 
             for(int j = 0; j < nodes.size(); j++) {
-                vector<int> q;
+                //vector<int> stak;
+                stack<int> stak;
+                set<int> inStack; 
 
-                // do BFS for each node
-                q.push_back(nodes[j]);
-                visited.clear();
-                visited.insert(i);
+                // do DFS for each node
+                stak.push(nodes[j]);
+                inStack.insert(nodes[j]);
+                while(stak.size() > 0) {
+                    int node = stak.top();
+                    stak.pop();
+                    
+                    vector<int> connectedNodes = graph[node];
+                    for(int k = 0; k < connectedNodes.size(); k++) {
+                        if (inStack.find(connectedNodes[k]) != inStack.end()) {
+                            isSafe = false;
+                            break;
+                        }
 
-                while (q.size() > 0) {
-                    int n = q.front();
-                    q.erase(q.begin());
-
-                    if (safeNodes.find(n) != safeNodes.end()) {
-                       continue;
+                        inStack.insert(connectedNodes[k]);
+                        stak.push(connectedNodes[k]);
                     }
+                    inStack.erase(node);
 
-                    // its empty
-                    if (graph[n].size() == 0) {
-                        safeNodes.insert(n);
-                        continue;
-                    }
-
-                    if (visited.find(n) != visited.end()) {
-                        //cout << "Cycle detected at " << n << " : " << "i: " << i << " j: " << j << endl;
-                        isSafe = false;
-                        break;
-                    }
-
-                    visited.insert(n);
-                    q.insert(q.end(), graph[n].begin(), graph[n].end());
                 }
+                
             }
 
             if (isSafe) {
