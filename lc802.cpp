@@ -37,6 +37,7 @@ public:
                 while(stak.size() > 0) {
                     int node = stak.top();
                     stak.pop();
+                    cout << node << endl;
                     
                     vector<int> connectedNodes = graph[node];
                     for(int k = 0; k < connectedNodes.size(); k++) {
@@ -69,7 +70,8 @@ int main() {
     Solution s;
 
     // Example 1: Graph with a cycle
-    vector<vector<int>> graph1 = {{1,2},{2,3},{5},{0},{5},{},{}};
+    //[[1,3,4],[2,3,4],[0,3],[4],[]]
+    vector<vector<int>> graph1 = {{1,3,4},{2,3,4},{0,3},{4},{}};
     vector<int> result1 = s.eventualSafeNodes(graph1);
     cout << "Safe nodes in graph1: ";
     for(int i = 0; i < result1.size(); i++) {

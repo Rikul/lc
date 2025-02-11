@@ -11,6 +11,7 @@
     "files.associations": {
         "xstring": "cpp",
         "xtree": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "set": "cpp"
     }
 }
