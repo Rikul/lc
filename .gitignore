@@ -2,3 +2,8 @@
 *.obj
 *.pdb
 a.out
+.vs
+CppProperties.json
+.ilk
+.vscode
+
